@@ -10,3 +10,16 @@ ORDER BY avg_LE_delta_gender DESC
 LIMIT 1;
 
 -- it's the Russian Federation with 11.95 years
+
+-- Are there any countries where men live more than women?
+
+SELECT
+	CountryDisplay,
+	AVG(CASE WHEN SexDisplay = "Female" THEN Numeric END) - AVG(CASE WHEN SexDisplay = "Male" THEN Numeric END) AS avg_LE_delta_gender
+FROM `sql-sandbox-20240505.lifeexpectancy.lifeexpectancy`
+WHERE MetricObserved = "Life expectancy at birth (years)"
+GROUP BY CountryDisplay
+HAVING avg_LE_delta_gender < 0
+LIMIT 1;
+
+-- yeah, Mali is the only one, though
