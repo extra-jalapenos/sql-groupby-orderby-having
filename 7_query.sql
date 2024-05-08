@@ -5,3 +5,5 @@ FROM `sql-sandbox-20240505.lifeexpectancy.lifeexpectancy`
 GROUP BY CountryDisplay
 ORDER BY avg_alcohol_servings DESC
 LIMIT 10;
+
+-- Denmark is topmost country
